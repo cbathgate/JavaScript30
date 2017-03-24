@@ -9,13 +9,13 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px" onchange="spaceImage()">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px" onchange="blurImage()">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="base" type="color" name="base" value="#ffc600" onchange="changeColor()">
   </div>
 
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
@@ -45,9 +45,41 @@
     input {
       width:100px;
     }
+
+    img {
+      border-style: solid;
+      border-width: 20px;
+      border-color: #ffc600;
+    }
+
   </style>
 
   <script>
+
+    // TODO: refactor to DRY
+
+    var blurImage = function() {
+      var blurFactor = document.getElementById("blur").value + 'px';
+      document.getElementsByTagName("IMG")[0].style.filter = "blur(" + blurFactor + ")";
+    }
+
+    var spaceImage = function() {
+      var spaceFactor = document.getElementById("spacing").value + 'px';
+      document.getElementsByTagName("IMG")[0].style.borderWidth = spaceFactor;
+    }
+
+    var changeColor = function() {
+      var currentColor = document.getElementById("base").value;
+      document.getElementsByTagName("IMG")[0].style.borderColor = currentColor;
+      document.getElementsByClassName("hl")[0].style.color = currentColor;
+    }
+
+    window.onload = function(){
+      blurImage();
+      spaceFactor();
+      changeColor();
+    };
+
   </script>
 
 </body>
