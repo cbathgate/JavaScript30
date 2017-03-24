@@ -56,12 +56,46 @@
       transform: translateY(-3px); /* account for the height of the clock hands */
     }
 
-    .hand {
+    @-webkit-keyframes rotate {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to { 
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+
+    .hand, .hour-hand, .min-hand, .second-hand {
       width:50%;
       height:6px;
       background:black;
       position: absolute;
       top:50%;
+    }
+
+    .hour-hand {
+      -webkit-animation-name:             rotate; 
+      -webkit-animation-duration:         86400s; 
+      -webkit-animation-iteration-count:  infinite;
+      -webkit-animation-timing-function:  linear;
+      transform-origin: top right;
+    }
+
+    .min-hand {
+      -webkit-animation-name:             rotate; 
+      -webkit-animation-duration:         3600s; 
+      -webkit-animation-iteration-count:  infinite;
+      -webkit-animation-timing-function:  linear;
+      transform-origin: top right;
+    }
+
+    .second-hand {
+      -webkit-animation-name:             rotate; 
+      -webkit-animation-duration:         60s; 
+      -webkit-animation-iteration-count:  infinite;
+      -webkit-animation-timing-function:  linear;
+      transform-origin: top right;
     }
 
   </style>
