@@ -42,9 +42,10 @@
       font-size: 20px;
       background-size:cover;
       background-position:center;
-      align-content: stretch; /* my add */
-      flex-direction: column;
-      flex-grow: 8; /* my add*/
+      flex-direction: column; /* my add*/
+      justify-content: center; /* my add*/
+      flex-grow: 1; /* my add*/
+      display: flex; /* my add*/
     }
 
 
@@ -71,34 +72,56 @@
     }
 
     .panel.open {
+      flex-grow: 5;
       font-size:40px;
+    }
+
+    .panel > *:first-child { 
+      transform: translateY(-100%); 
+      font-size: 0;
+    }
+
+    .panel.open> *:first-child { 
+      transform: translateY(0); 
+      font-size: 2em;
+
+    }
+
+    .panel > *:last-child { 
+      transform: translateY(100%); 
+      font-size: 0;
+    }
+
+    .panel.open> *:last-child { 
+      transform: translateY(0); 
+      font-size: 2em;
     }
 
   </style>
 
 
-  <div class="panels" onclick="testFunc()">
-    <div class="panel panel1">
+  <div class="panels" >
+    <div class="panel panel1" onclick="toggleClick(event.target)">
       <p>Hey</p>
       <p>Let's</p>
       <p>Dance</p>
     </div>
-    <div class="panel panel2" onclick="testFunc()">
+    <div class="panel panel2" onclick="toggleClick(event.target)">
       <p>Give</p>
       <p>Take</p>
       <p>Receive</p>
     </div>
-    <div class="panel panel3" onclick="testFunc()">
+    <div class="panel panel3" onclick="toggleClick(event.target)">
       <p>Experience</p>
       <p>It</p>
       <p>Today</p>
     </div>
-    <div class="panel panel4" onclick="testFunc()">
+    <div class="panel panel4" onclick="toggleClick(event.target)">
       <p>Give</p>
       <p>All</p>
       <p>You can</p>
     </div>
-    <div class="panel panel5" onclick="testFunc()">
+    <div class="panel panel5" onclick="toggleClick(event.target)">
       <p>Life</p>
       <p>In</p>
       <p>Motion</p>
@@ -106,8 +129,17 @@
   </div>
 
   <script>
-    var testFunc = function() {
-      console.log('yippee!');
+    var toggleClick = function(event) {
+      var clickedClass = event.classList.value;
+      var clickedDiv = document.getElementsByClassName(clickedClass)[0];
+      console.log('this is the clickedDiv: ', clickedDiv.className);
+      if (clickedDiv.className.indexOf('open') < 0) {
+        clickedDiv.className += ' open';
+      } else {
+        var indexNum = clickedDiv.className.indexOf('open');
+        console.log('this is indexNum: ', indexNum);
+        clickedDiv.className = clickedDiv.className.slice(0, indexNum);
+      }
     }
   </script>
 
