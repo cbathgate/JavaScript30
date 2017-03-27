@@ -24,6 +24,7 @@
     .panels {
       min-height:100vh;
       overflow: hidden;
+      display: flex; /* my add*/
     }
 
     .panel {
@@ -41,6 +42,9 @@
       font-size: 20px;
       background-size:cover;
       background-position:center;
+      align-content: stretch; /* my add */
+      flex-direction: column;
+      flex-grow: 8; /* my add*/
     }
 
 
@@ -73,28 +77,28 @@
   </style>
 
 
-  <div class="panels">
+  <div class="panels" onclick="testFunc()">
     <div class="panel panel1">
       <p>Hey</p>
       <p>Let's</p>
       <p>Dance</p>
     </div>
-    <div class="panel panel2">
+    <div class="panel panel2" onclick="testFunc()">
       <p>Give</p>
       <p>Take</p>
       <p>Receive</p>
     </div>
-    <div class="panel panel3">
+    <div class="panel panel3" onclick="testFunc()">
       <p>Experience</p>
       <p>It</p>
       <p>Today</p>
     </div>
-    <div class="panel panel4">
+    <div class="panel panel4" onclick="testFunc()">
       <p>Give</p>
       <p>All</p>
       <p>You can</p>
     </div>
-    <div class="panel panel5">
+    <div class="panel panel5" onclick="testFunc()">
       <p>Life</p>
       <p>In</p>
       <p>Motion</p>
@@ -102,7 +106,9 @@
   </div>
 
   <script>
-
+    var testFunc = function() {
+      console.log('yippee!');
+    }
   </script>
 
 
